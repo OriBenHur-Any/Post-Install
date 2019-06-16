@@ -1,2 +1,2 @@
 # Post-Install
-curl -L https://git.io/Ununtu
+curl -L https://git.io/Ubuntu
