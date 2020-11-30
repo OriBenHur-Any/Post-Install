@@ -21,7 +21,7 @@ sudo apt update
 sudo apt install --no-install-recommends -y docker-ce unzip gzip xdotool xvfb rsync imagemagick iotop iftop less autossh lsof mtools \
     nmap telnet v4l-utils vim vlc wget gimp ntfs-3g ntpdate hwdata hardinfo exfat-fuse exfat-utils simplescreenrecorder gedit htop \ 
     ssh tmux avahi-discover net-tools gparted git geany aptitude sysstat inotify-tools ffmpeg teamviewer terminator chrome-gnome-shell \ 
-    code qbittorrent chrome-gnome-shell gnome-tweak-tool google-chrome-stable openvpn3 jq pv
+    code qbittorrent chrome-gnome-shell gnome-tweak-tool google-chrome-stable openvpn3 jq pv ncdu
 sudo snap refresh
 sudo snap install spotify 
 sudo snap install slack --classic
@@ -48,8 +48,9 @@ bash /tmp/JD2Setup_x64.sh -q -dir /home/ori/jd2 -overwrite
 curl -fSL -o /home/$(logname)/vmware.bin https://www.vmware.com/go/getworkstation-linux
 sudo bash /home/$(logname)/vmware.bin --console --required --eulas-agreed
 curl -fsSL  https://download.jetbrains.com/toolbox/jetbrains-toolbox-1.18.7455.tar.gz?_ga=2.150207414.185355059.1601594832-672691879.1601594832| tar -zxvf - -C  /home/$(logname)/jetbrains-toolbox
-sudo curl -L https://github.com/docker/compose/releases/download/1.27.4/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose && sudo chmod +x /usr/bin/docker-compose
-sudo curl -L https://raw.githubusercontent.com/docker/compose/1.27.4/contrib/completion/bash/docker-compose -o /etc/bash_completion.d/docker-compose 
+vesrion=$(curl -s https://api.github.com/repos/docker/compose/releases/latest | jq -r .tag_name)
+sudo curl -L https://github.com/docker/compose/releases/download/${vesrion}/docker-compose-$(uname -s)-$(uname -m) -o /usr/bin/docker-compose && sudo chmod +x /usr/bin/docker-compose
+sudo curl -L https://raw.githubusercontent.com/docker/compose/${vesrion}/contrib/completion/bash/docker-compose -o /etc/bash_completion.d/docker-compose
 sudo groupadd docker
 sudo usermod -aG docker $(logname)
 gsettings set org.gnome.desktop.wm.keybindings switch-input-source "['<Shift>Alt_L']"
